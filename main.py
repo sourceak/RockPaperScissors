@@ -1,16 +1,43 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import random
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# game logic of rock paper scissors
+def game_logic(player, ai):
+    if player == 'rock' and ai == 'paper' or ai == 'rock' and player == 'paper':
+        return 'paper'
+    elif player == 'rock' and ai == 'scissors' or ai == 'rock' and player == 'scissors':
+        return 'rock'
+    elif player == ai:
+        return player
+    else:
+        return 'scissors'
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# ai throws and validates player's input
+def throw():
+    while True:
+        hands = ['rock', 'paper', 'scissors']
+        ai = random.choice(hands)
+        player = input("Rock, Paper or Scissors? >> ").lower()
+        if player == 'exit':
+            print("Thanks for playing!")
+            return
+        elif player not in hands:
+            print("Unknown Input! Please enter Rock, Paper or Scissors.")
+        else:
+            print("----")
+            print("You:", player)
+            print("AI:", ai)
+            print("----")
+            winner = game_logic(player, ai)
+            if winner == player and winner == ai:
+                print("Its a tie!")
+            elif winner == ai:
+                print("AI Wins!")
+            else:
+                print("You Win!")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+throw()
+
+# pygames this and add score count
