@@ -13,8 +13,9 @@ def game_logic(player, ai):
         return 'scissors'
 
 
-# ai throws and validates player's input
+# AI throws and validates player's input
 def throw():
+    emoji = {'rock': '🪨', 'paper': '📜', 'scissors': '✂'}
     while True:
         hands = ['rock', 'paper', 'scissors']
         ai = random.choice(hands)
@@ -26,8 +27,8 @@ def throw():
             print("Unknown Input! Please enter Rock, Paper or Scissors.")
         else:
             print("----")
-            print("You:", player)
-            print("AI:", ai)
+            print("You:", player, emoji[player])
+            print("AI:", ai, emoji[ai])
             print("----")
             winner = game_logic(player, ai)
             if winner == player and winner == ai:
