@@ -15,6 +15,8 @@ def game_logic(player, ai):
 
 # AI throws and validates player's input
 def throw():
+    ai_score = 0
+    player_score = 0
     emoji = {'rock': '🪨', 'paper': '📜', 'scissors': '✂'}
     while True:
         hands = ['rock', 'paper', 'scissors']
@@ -24,21 +26,27 @@ def throw():
             print("Thanks for playing!")
             return
         elif player not in hands:
-            print("Unknown Input! Please enter Rock, Paper or Scissors.")
+            print("Invalid Input!")
         else:
+            # validates the winner
+            win = ["its a tie!", "AI Wins!", "You Win!"]
+            winning_hand = game_logic(player, ai)
+            if player == ai:
+                winner = win[0]
+            elif winning_hand == ai:
+                winner = win[1]
+                ai_score += 1
+            else:
+                winner = win[2]
+                player_score += 1
             print("----")
+            print("SCORE: Player", player_score, "AI", ai_score)
             print("You:", player, emoji[player])
             print("AI:", ai, emoji[ai])
             print("----")
-            winner = game_logic(player, ai)
-            if winner == player and winner == ai:
-                print("Its a tie!")
-            elif winner == ai:
-                print("AI Wins!")
-            else:
-                print("You Win!")
+            print(winner)
 
 
 throw()
 
-# pygames this and add score count
+# pygames this
